@@ -1,42 +1,448 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-site-verification" content="sr1De1BG168ANN89S2XPrEKfdKpf6cjLoRUnBLs4vwI" />
-<title>Privacy Policy - Calodu</title><link rel="stylesheet" href="style.css"></head>
+<title>Privacy Policy - Calodu</title><link rel="stylesheet" href="style.css"><style>
+.tw { overflow-x:auto; margin:8px 0 16px; }
+table { border-collapse:collapse; width:100%; font-size:15px; }
+th, td { border:1px solid var(--line); padding:6px 8px; text-align:left; vertical-align:top; }
+th { background:#E3E9EE; }
+code { font-size:14px; overflow-wrap:anywhere; }
+h3 { font-size:16px; margin:20px 0 6px; }
+blockquote { margin:8px 0; padding:4px 12px; border-left:3px solid var(--line); color:var(--sub); }
+.lang { color:var(--sub); }
+.ko { margin-top:56px; border-top:1px solid var(--line); padding-top:8px; }
+</style></head>
 <body><main>
 <nav><a href="./">Home</a><a href="privacy.html">Privacy Policy</a></nav>
-<h1>Privacy Policy</h1>
-<p class="sub">Calodu. Effective 2026-10-06.</p>
-
-<h2>Summary</h2>
-<p>Calodu is a desktop application that runs on your own Windows computer. The developer does not operate any server and does not receive, collect, store, sell or share your data.</p>
-
-<h2>Data the app accesses</h2>
+<p class="lang">English | <a href="#ko">한국어</a></p>
+<h1>Calodu Privacy Policy</h1>
+<p>Effective date: October 8, 2026</p>
+<p>Operator: Gleipnir</p>
+<p>This Privacy Policy explains how Calodu (the "App"), a Windows desktop calendar app distributed by Gleipnir, handles your information. In this policy, the "Operator" means Gleipnir. The App lets you view and edit your Google Calendar events and Microsoft To Do tasks together in a desktop widget.</p>
+<p>This policy is provided in Korean and English. If the two versions differ, the Korean version prevails.</p>
+<h2>1. Summary</h2>
 <ul>
-<li><strong>Google Calendar</strong> (scopes <code>calendar.events</code> and <code>calendar.readonly</code>): your calendar list and events, to display them in the widget, to create, edit and delete events you choose to change, and to keep copies of your To Do tasks in a calendar named "To Do".</li>
-<li><strong>Microsoft To Do</strong> (scopes <code>Tasks.ReadWrite</code>, <code>User.Read</code>, <code>offline_access</code>): your task lists and tasks, to display them and to create, edit, complete and delete tasks you choose to change.</li>
+<li>The Operator runs no server for the App and does not collect your personal information on any Operator server.</li>
+<li>The only personal information the Operator receives directly is the email you send when contacting us (Sections 2 and 7).</li>
+<li>The events, tasks, sign-in tokens, settings, and logs the App handles are all stored in a data folder on your PC (Section 5).</li>
+<li>The App communicates directly from your PC with Google and Microsoft servers; this communication does not pass through the Operator.</li>
+<li>The App contains no advertising, analytics, or crash-reporting tools, and the Operator does not sell your personal information or provide it to third parties.</li>
+<li>Signing out of a service in the App removes that service's sign-in information and cache; deleting the data folder and revoking access in your Google and Microsoft account settings cleans up completely (Section 6).</li>
+<li>Copying To Do tasks to Google Calendar (Section 4) and attaching the widget to the desktop (Section 10, offered only in the installer version) are off in a new installation and are turned on only after you agree in the settings.</li>
 </ul>
-
-<h2>Where data is stored</h2>
+<h2>2. Information We Process</h2>
+<p>The App processes the information below only after you sign in with your Google or Microsoft account and grant access. Sign-in takes place on the Google or Microsoft sign-in page shown in your browser; the App does not receive or store your account password.</p>
+<div class="tw"><table>
+<thead><tr><th>Source</th><th>Information</th><th>Read or write</th><th>Stored on your PC?</th></tr></thead>
+<tbody>
+<tr><td>Google sign-in</td><td>Sign-in tokens (access token, refresh token)</td><td>Obtained and used by the App</td><td>Yes, <code>google_token.bin</code> (encrypted)</td></tr>
+<tr><td>Microsoft sign-in</td><td>Sign-in tokens (access token, refresh token); may include account identifiers such as your sign-in name</td><td>Obtained and used by the App</td><td>Yes, <code>msal_cache.bin</code> (encrypted)</td></tr>
+<tr><td>Google Calendar</td><td>Calendar list (calendar IDs, calendar names, etc., including subscribed holiday calendars)</td><td>Read</td><td>Calendar IDs only, <code>cache.db</code></td></tr>
+<tr><td>Google Calendar</td><td>Events: event ID, calendar ID, title, description, start and end time, all-day flag, version identifier (etag), last-modified time</td><td>Read; write when you act in the widget</td><td>Yes, <code>cache.db</code> (not encrypted)</td></tr>
+<tr><td>Google Calendar</td><td>Other event fields included in the response (attendees, location, etc.)</td><td>Read (received in the response)</td><td>No, processed in memory only</td></tr>
+<tr><td>Microsoft To Do</td><td>Task list information (list IDs, list names, etc.)</td><td>Read</td><td>List IDs only, <code>cache.db</code></td></tr>
+<tr><td>Microsoft To Do</td><td>Tasks: task ID, list ID, title, note (body), due date, completion status, reminder time, version identifier (etag), last-modified time</td><td>Read; write when you act in the widget</td><td>Yes, <code>cache.db</code> (not encrypted)</td></tr>
+<tr><td>App sync</td><td>Sync state values (sync tokens) used to fetch only changes</td><td>Created and used by the App</td><td>Yes, <code>cache.db</code></td></tr>
+<tr><td>App settings</td><td>Window position, size, opacity, placement mode, selected theme, whether copying (mirroring) is on, the time you agreed when turning on desktop attachment or copying, the time you dismissed the first-run notice</td><td>Created and used by the App</td><td>Yes, <code>widget.json</code></td></tr>
+<tr><td>App activity</td><td>Activity log (see Section 9)</td><td>Created by the App</td><td>Yes, <code>widget.log</code></td></tr>
+<tr><td>Your PC screen</td><td>Mouse cursor position, whether a mouse button is pressed, screen coordinates of desktop icons (see Section 10)</td><td>Read</td><td>No</td></tr>
+</tbody></table></div>
+<p>The calendar ID of your primary Google calendar is usually the same as your Google account email address. Your Google account email address may therefore appear in the cache on your PC (<code>cache.db</code>).</p>
+<h3>Information the Operator receives directly</h3>
+<p>The events, tasks, and sign-in tokens the App handles are processed on-device, only inside your PC, and are not sent to any Operator server. This information is deleted from your PC when you sign out in the App or delete the data folder (Section 6). The only personal information the Operator receives and processes directly is the email address and message content (including any name you write) that you send when contacting us. In addition, the Operator receives installation, usage, add-on purchase, and crash statistics that Microsoft provides through Partner Center (Section 9).</p>
+<h2>3. Purposes of Processing</h2>
+<p>The App processes the information above only for the following purposes.</p>
 <ul>
-<li>Sign-in tokens are stored only on your computer, encrypted with Windows Data Protection (DPAPI).</li>
-<li>A local cache of your events and tasks is stored only on your computer to display the widget quickly.</li>
-<li>Data travels only between your computer and Google or Microsoft over HTTPS. No data is sent to the developer or any third party. The app contains no analytics, advertising or tracking.</li>
+<li>To display your Google Calendar events and Microsoft To Do tasks in the widget.</li>
+<li>To create, edit, complete, or delete events and tasks when you request it directly in the widget.</li>
+<li>If you turn it on in the settings, to copy incomplete tasks that have a due date to your own Google Calendar (Section 4).</li>
+<li>To keep you signed in so that syncing continues without signing in each time.</li>
+<li>To restore display settings such as window position the next time the App starts.</li>
+<li>To keep an activity log so that you can check the cause of problems such as sync errors.</li>
 </ul>
-
-<h2>Google API Services User Data Policy</h2>
-<p>Calodu's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. Google user data is used only to provide the calendar features described above, is not transferred to others, is not used for advertising, and is not read by humans.</p>
-
-<h2>Deleting your data and revoking access</h2>
+<p>The App syncs with Google and Microsoft every 60 seconds. The first sync downloads all past events in your calendars with no date limit; after that, only changes are downloaded.</p>
+<h3>Purpose of each requested permission (scope)</h3>
+<div class="tw"><table>
+<thead><tr><th>Permission (scope)</th><th>Provider</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td><code>https://www.googleapis.com/auth/calendar.readonly</code></td><td>Google</td><td>Read your calendar list and the events in every calendar on that list to display them in the widget.</td></tr>
+<tr><td><code>https://www.googleapis.com/auth/calendar.events</code></td><td>Google</td><td>Create events (all-day events in your primary calendar), edit event titles and dates, and delete events when you request it in the widget; if you turn on the copying (mirroring) in Section 4, create, update, and delete the task copy events.</td></tr>
+<tr><td><code>Tasks.ReadWrite</code></td><td>Microsoft</td><td>Read and display your To Do lists and tasks; create, edit, complete, and delete tasks when you request it in the widget.</td></tr>
+<tr><td><code>offline_access</code></td><td>Microsoft</td><td>Obtain a refresh token so that syncing continues without you signing in each time. The sign-in library requests it automatically.</td></tr>
+</tbody></table></div>
+<p>Except for the copying (mirroring) in Section 4 that you turn on, the App changes your Google or Microsoft data only when you act directly in the widget. Deleting an event or task at your request in the widget happens only after you confirm in a confirmation dialog in the widget.</p>
+<h2>4. Copying Microsoft To Do Tasks to Google Calendar (Mirroring)</h2>
+<p>Only if you turn it on in the settings, the App automatically copies some of your Microsoft To Do tasks as events into the calendar named "To Do" in your Google account. This feature is off in a new installation, and the time you agree when turning it on is recorded in the settings file (<code>widget.json</code>). This copying runs only from Microsoft to Google, and it moves part of the data in your own Microsoft account into your own Google account. The copied information is not sent to the Operator.</p>
 <ul>
-<li>Remove the app's access at any time: Google at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>, Microsoft at <a href="https://account.live.com/consent/Manage">account.live.com/consent/Manage</a> (personal accounts) or your organization's My Apps page.</li>
-<li>Delete the local folder <code>%LOCALAPPDATA%\agenda-widget</code> to remove all tokens and cached data from your computer.</li>
+<li>Target calendar: the App does not create calendars. You need to create a calendar named exactly "To Do" in Google Calendar yourself; if it does not exist, the widget shows how to create it.</li>
+<li>What is copied: tasks that have a due date and are not completed</li>
+<li>Content copied: task title, due date (as an all-day event) or reminder time (as a 30-minute event), and internal identifiers (task ID and list ID, stored in the event's private extended properties)</li>
+<li>Content not copied: task notes (body), list names</li>
+<li>When: at every sync, and right after you edit a task in the widget</li>
+<li>Updates and removal: when a task is completed, deleted, or loses its due date, the App deletes the corresponding copy event.</li>
+<li>Limits on changes: the only Google events the App edits or deletes are copies marked with a task ID inside the "To Do" calendar; it does not delete other events or the calendar itself.</li>
+<li>One direction only: edits you make to a copy in Google are not reflected in To Do and are overwritten with the To Do content at the next sync.</li>
 </ul>
-
-<h2>Changes</h2>
-<p>If this policy changes, the updated version will be posted on this page with a new effective date.</p>
-
-<h2>개인정보처리방침 요약 (한국어)</h2>
-<p>이 앱은 사용자 PC에서만 동작하며 개발자는 어떤 데이터도 수집, 저장, 제공하지 않습니다. Google Calendar와 Microsoft To Do 데이터는 표시와 사용자가 요청한 변경에만 쓰이고, 로그인 토큰과 캐시는 사용자 PC에 암호화(DPAPI) 또는 로컬 저장됩니다. 접근 권한은 각 계정 설정에서 언제든 해제할 수 있습니다.</p>
-
+<p>Data received from Google is not sent to Microsoft or anywhere else. You can turn copying off in the settings at any time. Turning it off stops further copying, but copy events already created are not deleted; you can delete them directly in Google Calendar if needed.</p>
+<h2>5. Storage Location and Security Measures</h2>
+<p>The App's data is stored in a data folder on your PC, whose location depends on how the App was installed.</p>
+<ul>
+<li>Microsoft Store version: <code>%LOCALAPPDATA%\Packages\Gleipnir.calodu_c0vj0afnznazg\LocalState</code></li>
+<li>Installer version: <code>%LOCALAPPDATA%\agenda-widget</code></li>
+</ul>
+<p>For testing, another location can be set with the <code>AGENDA_WIDGET_DATA</code> environment variable or the <code>--data-dir</code> launch argument. The Operator cannot access the contents of this folder.</p>
+<div class="tw"><table>
+<thead><tr><th>File</th><th>Contents</th><th>Protection</th></tr></thead>
+<tbody>
+<tr><td><code>google_token.bin</code></td><td>Google sign-in tokens</td><td>Encrypted with Windows DPAPI; can be decrypted only under the current Windows user account</td></tr>
+<tr><td><code>msal_cache.bin</code></td><td>Microsoft sign-in tokens; may include account identifiers</td><td>Encrypted with Windows DPAPI; can be decrypted only under the current Windows user account</td></tr>
+<tr><td><code>cache.db</code></td><td>Event and task fields listed in Section 2, sync state values</td><td>Not encrypted</td></tr>
+<tr><td><code>widget.json</code></td><td>Window position, size, opacity, placement mode, theme</td><td>Not encrypted</td></tr>
+<tr><td><code>widget.log</code> (older files <code>widget.log.1</code> to <code>widget.log.3</code>)</td><td>Activity log</td><td>Not encrypted</td></tr>
+</tbody></table></div>
+<p>The App applies the following measures.</p>
+<ul>
+<li>Sign-in tokens are stored encrypted with Windows DPAPI.</li>
+<li>Communication with Google and Microsoft uses HTTPS.</li>
+<li>The temporary server used to receive the sign-in response (<code>localhost</code>) and the local server that displays the widget (<code>127.0.0.1</code>) are opened only inside your PC.</li>
+<li>Because the Operator has no server, your data is not kept on the Operator's side.</li>
+</ul>
+<p>The event and task cache (<code>cache.db</code>) is not encrypted, so any person or program with access to the same Windows account on the same PC can read it. We recommend setting a password on your Windows account and, where possible, using disk encryption such as BitLocker.</p>
+<h2>6. Retention and Deletion</h2>
+<h3>Retention period</h3>
+<p>Information stored on your PC is kept until you delete the data folder. Events and tasks deleted in the original service (Google or Microsoft) are also removed from the cache at the next sync. However, if you remove an entire calendar or task list in Google or Microsoft, the items in it may remain in the cache. The activity log moves to a new file when a file reaches about 1 MB and keeps at most 3 older files, so its total size stays under about 4 MB and older log entries are deleted automatically.</p>
+<h3>When you uninstall the App</h3>
+<ul>
+<li>Microsoft Store version: when you uninstall the App, Windows also deletes the data folder (sign-in tokens, cache, settings, log).</li>
+<li>Installer version: uninstalling does not delete the data folder; when uninstallation finishes, a notice shows you its location. If you chose "Run at Windows startup" during installation (unchecked by default), that startup entry is removed on uninstall.</li>
+</ul>
+<p>Either way, copy events the App created in your Google "To Do" calendar and the App's access permissions registered in your Google and Microsoft accounts remain after uninstalling. If needed, delete the copy events directly in Google Calendar and revoke access as described below.</p>
+<h3>How to delete information stored on your PC</h3>
+<ol>
+<li>Quit the widget.</li>
+<li>Type the data folder location (Section 5) in the File Explorer address bar to open the folder. For the installer version it is <code>%LOCALAPPDATA%\agenda-widget</code>.</li>
+<li>Delete that folder. If it was moved to the Recycle Bin, empty the Recycle Bin as well.</li>
+</ol>
+<h3>Signing out and switching accounts</h3>
+<p>In the App you can sign out of Google and Microsoft separately, or switch to another account. After you confirm, signing out deletes that service's sign-in information (tokens) and cached items stored on this PC. Your events and tasks on the Google and Microsoft servers are not changed.</p>
+<h3>Revoking access</h3>
+<p>Signing out in the App does not revoke the access permissions registered in your Google or Microsoft account, so that sign-ins on your other PCs using the same account are not cut off. To revoke access completely, remove it in each account's settings.</p>
+<ul>
+<li>Google: remove Calodu's access on the "Third-party apps and services" page of your Google Account (<a href="https://myaccount.google.com/permissions">https://myaccount.google.com/permissions</a>).</li>
+<li>Microsoft personal account: remove Calodu's permissions on the app permissions page (<a href="https://account.live.com/consent/Manage">https://account.live.com/consent/Manage</a>).</li>
+<li>Microsoft work or school account: if you signed in with one, remove Calodu's permissions on the app permissions page your organization provides, or ask your organization's administrator.</li>
+</ul>
+<p>Revoking access in your account settings does not delete information already stored on your PC. To clean up completely, sign out in the App or delete the data folder, and also revoke access in your account settings.</p>
+<h3>Operator's deletion procedure</h3>
+<p>Because the Operator does not keep App data, there is no App data for the Operator to delete. Information you send by email when contacting us (Section 14) is kept for 1 year after your inquiry is resolved and then deleted. However, purchase-related inquiries such as those about Pro purchases or refunds (records of complaints or disputes about transactions) are kept for 3 years after the inquiry is resolved and then deleted, as required by Article 6 of the Korean Act on Consumer Protection in Electronic Commerce and Article 6 of its Enforcement Decree (retained items: email address, inquiry content, and how it was resolved). Personal information included in Partner Center crash data is deleted within 30 days of receipt (Section 9).</p>
+<h2>7. Provision to Third Parties, Outsourcing, and International Transfers</h2>
+<ul>
+<li>Provision to third parties: the Operator does not provide your personal information to third parties.</li>
+<li>The App's communications: the App communicates directly from your PC, using your own Google and Microsoft accounts, with each company's servers (the Google APIs at <code>www.googleapis.com</code>, Google sign-in and token servers, Microsoft Graph at <code>graph.microsoft.com</code>, and the Microsoft sign-in server at <code>login.microsoftonline.com</code>). These servers may be located outside your country. The Operator is not involved in and does not receive this communication, so it is not a provision to third parties, outsourcing, or international transfer by the Operator. Google and Microsoft are services you sign up for and use yourself, and processing within those services is governed by each company's privacy policy. The copying (mirroring) in Section 4 moves information from your own Microsoft account to your own Google account.</li>
+<li>Outsourcing and international transfer (contact emails): the Operator uses Google LLC's Gmail to receive and keep contact emails, which may be stored on Google's servers outside Korea. The Operator does not outsource any other processing of personal information. Details are in the table below.</li>
+</ul>
+<div class="tw"><table>
+<thead><tr><th>Item</th><th>Details</th></tr></thead>
+<tbody>
+<tr><td>Legal basis</td><td>Article 28-8(1)(3)(a) of the Korean Personal Information Protection Act (disclosure in this policy)</td></tr>
+<tr><td>Items transferred</td><td>Your email address and message content (including any name you write)</td></tr>
+<tr><td>Countries</td><td>Countries outside Korea where Google operates servers. Google states that it maintains servers around the world and that your information may be processed on servers located outside the country where you live (Google Privacy Policy). Google decides where the data is stored; the Operator cannot choose the country.</td></tr>
+<tr><td>When and how</td><td>When you send an email, transmitted over the internet</td></tr>
+<tr><td>Recipient</td><td>Google LLC (contact: see the contact information in the Google Privacy Policy, <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>)</td></tr>
+<tr><td>Purpose and retention</td><td>Email storage and delivery, for the retention period for contact emails stated in Section 6</td></tr>
+<tr><td>How to refuse and its effect</td><td>If you do not want your email stored abroad, do not contact us by email. You will then be unable to contact the Operator, but this does not affect your use of the App.</td></tr>
+</tbody></table></div>
+<h3>Temporary data of the display component (WebView2)</h3>
+<p>The App uses the Microsoft Edge WebView2 Runtime as a display component, and the App's screens run in WebView2's InPrivate mode. While running, it creates temporary display data in your Windows user temporary folder (<code>%TEMP%</code>), which is deleted when the App exits normally. If the App exits abnormally, this temporary data may remain; it is deleted by Windows temporary file cleanup. Because sign-in takes place in your system's default browser, no sign-in information is stored in this temporary data. Data processing by the WebView2 Runtime itself is governed by Microsoft's privacy statement.</p>
+<h2>8. Google User Data Limited Use Disclosure</h2>
+<p>Calodu's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+<p>Specifically, the App handles Google user data as follows.</p>
+<ul>
+<li>It is used only to provide the widget features of displaying events and editing events at your request.</li>
+<li>Google user data is not sent to the Operator or any third party, and it is not sold or transferred to any third party, including advertising platforms and data brokers.</li>
+<li>It is not used for advertising, including retargeting or personalized advertising.</li>
+<li>It is not used to determine creditworthiness or for lending purposes.</li>
+<li>Because the Operator has no server and does not receive Google user data, neither the Operator nor any other person reads that data.</li>
+</ul>
+<h2>9. Automatic Collection Tools (Cookies, Analytics) and Log Files</h2>
+<ul>
+<li>Cookies and browser storage: the App's screens do not use cookies, localStorage, or IndexedDB. The widget is displayed through a local server inside your PC (<code>127.0.0.1</code>) and does not load external scripts, fonts, or images. For temporary display data, see Section 7.</li>
+<li>Analytics, advertising, and crash-reporting tools: the App contains none of these tools.</li>
+<li>Microsoft Store distribution: Microsoft provides the Operator, through Partner Center, with reports on the App's installations, usage, add-on purchases, and crashes and unresponsive events. These statistics are aggregated information that does not identify individuals, and the Operator does not use them to identify any particular user or device. If crash data includes personal information, the Operator uses it only to fix errors in the App and deletes it within 30 days of receipt. The collection and processing of that information is governed by Microsoft's privacy statement.</li>
+</ul>
+<h3>Log file (<code>widget.log</code>)</h3>
+<p>The App keeps an activity log in the data folder on your PC for troubleshooting. The log is not sent to the Operator.</p>
+<ul>
+<li>Recorded: number of items synced, error types and HTTP status codes, window placement mode, the data folder path at startup, the fact that you signed out or turned copying (mirroring) on or off, whether Pro is owned and the result of a purchase (such as succeeded or canceled), and, in placement mode, the number of desktop icons and the fact that the widget was raised or lowered</li>
+<li>Path notation: folder paths in the log are rewritten in forms such as <code>%LOCALAPPDATA%</code>, <code>%APPDATA%</code>, and <code>~</code> so that your Windows user name is not shown.</li>
+<li>Not recorded: titles and contents of events and tasks, sign-in tokens (under default settings; titles are recorded only at the debug level, which is off by default)</li>
+<li>Size: the log moves to a new file about every 1 MB and keeps at most 3 older files (about 4 MB in total). If needed, you can quit the widget and delete the log files yourself.</li>
+</ul>
+<h2>10. Information Used Only Inside Your PC for Display</h2>
+<p>The desktop attachment feature in this section is offered only in the installer version; the Microsoft Store version does not have it. In a new installation of the installer version, the widget opens as a normal window, and attaching it to the desktop is turned on only after you agree in the settings (the time you agreed is recorded in <code>widget.json</code>). If you turn on the placement mode that keeps the widget behind desktop icons, the App reads the following about every 0.05 seconds to raise or lower the widget in front of or behind the desktop icons.</p>
+<ul>
+<li>Mouse cursor position</li>
+<li>Whether a mouse button is pressed</li>
+<li>Screen position (coordinates) of desktop icons</li>
+</ul>
+<p>The App does not read icon names, file contents, or keyboard input. This information is neither stored nor transmitted; the log records only the number of icons and the fact that the widget was raised or lowered.</p>
+<h2>11. Paid Features and Payments</h2>
+<p>The App is free, and a one-time purchase of the Microsoft Store add-on "Pro" unlocks the Microsoft To Do features and copying tasks to Google Calendar (Section 4). A purchase starts in the App's settings and is completed in the Microsoft Store purchase window. Payment and payment method information such as card numbers are handled by Microsoft; neither the App nor the Operator receives them. Information processing related to purchases and payments is governed by Microsoft's privacy statement and the Microsoft Store terms. The App only checks whether you own Pro by using the Microsoft Store license check provided by Windows, and it does not create a separate license file. The log records only whether Pro is owned and the result of a purchase (Section 9). The price of Pro is shown on the App's Microsoft Store page and, as provided by the Microsoft Store, in the App's settings.</p>
+<h2>12. Children's Personal Information</h2>
+<p>The App is not directed at children under 14. Using the App requires a Google or Microsoft account. In South Korea, both Google and Microsoft require users to be at least 14 to manage their own accounts; younger children's accounts must be managed by a parent (Google Family Link, Microsoft Family Safety). In other countries, the age requirements each company sets for that country apply. The Operator does not collect children's personal information through the App. If a child under 14 wishes to contact us, please have a parent or legal guardian contact us on the child's behalf.</p>
+<h2>13. Your Rights and How to Exercise Them</h2>
+<p>You (the data subject) have the right to request access to, correction of, deletion of, and suspension of processing of your personal information, and to withdraw consent. Because the App's information is on your PC, you can exercise most of these rights yourself.</p>
+<div class="tw"><table>
+<thead><tr><th>Right</th><th>How to exercise it</th></tr></thead>
+<tbody>
+<tr><td>Access</td><td>Check the files in the data folder (Section 5). Check the original events and tasks in Google Calendar and Microsoft To Do.</td></tr>
+<tr><td>Correction</td><td>Edit directly in the widget, Google Calendar, or Microsoft To Do. The cache is updated at the next sync.</td></tr>
+<tr><td>Deletion</td><td>Signing out of a service in the App deletes that service's sign-in information and cache. To delete all information, delete the data folder as described in Section 6.</td></tr>
+<tr><td>Suspension of processing</td><td>Quitting the widget stops syncing and processing. To stop only copying (mirroring), turn it off in the settings. If you set up automatic startup, turn it off in Windows startup app settings or uninstall the App.</td></tr>
+<tr><td>Withdrawal of consent</td><td>Sign out in the App and revoke the App's access in your Google and Microsoft accounts as described in Section 6. Copying (mirroring) and desktop attachment can be turned off in the settings.</td></tr>
+</tbody></table></div>
+<p>The Operator cannot access your PC or account data and therefore cannot view or delete it on your behalf. If you have questions about exercising your rights, contact us using the details in Section 14 and we will respond without delay. You may also contact us through a legal representative or an authorized agent. Rights concerning information stored in your Google or Microsoft account are exercised through the procedures each company provides.</p>
+<h2>14. Privacy Officer and Contact</h2>
+<div class="tw"><table>
+<thead><tr><th>Item</th><th>Details</th></tr></thead>
+<tbody>
+<tr><td>Privacy officer</td><td>Privacy contact (operator Gleipnir)</td></tr>
+<tr><td>Contact</td><td>gleipnir909@gmail.com</td></tr>
+<tr><td>Operator</td><td>Gleipnir</td></tr>
+<tr><td>Business registration</td><td>None (operated by an individual)</td></tr>
+</tbody></table></div>
+<p>The Operator is an individual who personally oversees the processing of personal information and handles privacy inquiries, complaints, and requests for remedies through the email address above.</p>
+<h2>15. Remedies for Infringement of Rights</h2>
+<p>For remedies or counseling regarding personal information infringement, you may contact the following Korean authorities.</p>
+<div class="tw"><table>
+<thead><tr><th>Organization</th><th>Phone</th><th>Website</th></tr></thead>
+<tbody>
+<tr><td>Personal Information Dispute Mediation Committee</td><td>1833-6972</td><td><a href="https://www.kopico.go.kr">www.kopico.go.kr</a></td></tr>
+<tr><td>Personal Information Infringement Report Center (KISA)</td><td>118</td><td><a href="https://privacy.kisa.or.kr">privacy.kisa.or.kr</a></td></tr>
+<tr><td>Supreme Prosecutors' Office</td><td>1301</td><td><a href="https://www.spo.go.kr">www.spo.go.kr</a></td></tr>
+<tr><td>Korean National Police Agency</td><td>182</td><td><a href="https://ecrm.police.go.kr">ecrm.police.go.kr</a></td></tr>
+</tbody></table></div>
+<h2>16. Changes to This Policy</h2>
+<p>If this policy changes, we will post the updated policy on this page and in the policy text submitted to the Microsoft Store, and state the new effective date in it. We will also announce the change in the App's update description in the Microsoft Store. General changes will be announced at least 7 days before they take effect, and changes that significantly affect your rights at least 30 days before.</p>
+<ul>
+<li>Effective date: October 8, 2026</li>
+<li>Previous version: effective 2026-10-06 (earlier version of this page)</li>
+</ul>
+<section class="ko" lang="ko">
+<h1 id="ko">Calodu 개인정보처리방침</h1>
+<p>시행일: 2026년 10월 8일</p>
+<p>운영자: Gleipnir</p>
+<p>이 개인정보처리방침은 Gleipnir가 배포하는 Windows 바탕화면 달력 앱 Calodu(캘로두, 이하 "앱")이 이용자의 정보를 어떻게 처리하는지 설명합니다. 이 방침에서 "운영자"는 Gleipnir를 말합니다. 앱은 이용자의 Google 캘린더 일정과 Microsoft To Do 할 일을 바탕화면 위젯에서 함께 보고 편집할 수 있게 해 주는 프로그램입니다.</p>
+<p>이 방침은 한국어와 영어로 제공합니다. 두 언어의 내용이 다를 경우 한국어 본문이 우선합니다.</p>
+<h2>1. 요약</h2>
+<ul>
+<li>운영자는 앱을 위한 서버를 운영하지 않으며, 이용자의 개인정보를 운영자 서버로 수집하지 않습니다.</li>
+<li>운영자가 직접 받는 개인정보는 이용자가 문의할 때 보내는 이메일뿐입니다(2절, 7절).</li>
+<li>앱이 처리하는 일정, 할 일, 로그인 토큰, 설정, 로그는 모두 이용자 PC의 데이터 폴더(5절)에 저장됩니다.</li>
+<li>앱은 이용자 PC에서 Google, Microsoft 서버와 직접 통신하며, 그 통신은 운영자를 거치지 않습니다.</li>
+<li>앱에는 광고, 분석 도구, 오류 보고 도구가 없으며, 운영자는 이용자의 개인정보를 판매하거나 제3자에게 제공하지 않습니다.</li>
+<li>앱 안에서 서비스별로 로그아웃하면 그 서비스의 로그인 정보와 캐시가 지워지며, 데이터 폴더 삭제와 Google, Microsoft 계정 설정의 접근 권한 철회로 완전히 정리할 수 있습니다(6절).</li>
+<li>To Do 할 일의 Google 캘린더 복사(4절)와 바탕화면 붙이기(10절, 설치 프로그램판에서만 제공)는 새로 설치하면 꺼져 있으며, 이용자가 설정에서 동의한 뒤에 켜집니다.</li>
+</ul>
+<h2>2. 처리하는 개인정보 항목</h2>
+<p>앱은 이용자가 Google, Microsoft 계정으로 로그인하고 접근을 허용한 경우에만 아래 정보를 처리합니다. 로그인은 브라우저에 표시되는 Google, Microsoft 로그인 화면에서 진행되며, 앱은 계정 비밀번호를 받거나 저장하지 않습니다.</p>
+<div class="tw"><table>
+<thead><tr><th>출처</th><th>항목</th><th>읽기·쓰기</th><th>PC에 저장되는가</th></tr></thead>
+<tbody>
+<tr><td>Google 계정 로그인</td><td>로그인 토큰(액세스 토큰, 갱신 토큰)</td><td>앱이 발급받아 사용</td><td>예, <code>google_token.bin</code>(암호화)</td></tr>
+<tr><td>Microsoft 계정 로그인</td><td>로그인 토큰(액세스 토큰, 갱신 토큰), 계정 식별 정보(로그인 이름 등)가 포함될 수 있음</td><td>앱이 발급받아 사용</td><td>예, <code>msal_cache.bin</code>(암호화)</td></tr>
+<tr><td>Google 캘린더</td><td>캘린더 목록(캘린더 ID, 캘린더 이름 등, 구독한 공휴일 캘린더 포함)</td><td>읽기</td><td>캘린더 ID만 저장, <code>cache.db</code></td></tr>
+<tr><td>Google 캘린더</td><td>일정: 일정 ID, 캘린더 ID, 제목, 설명, 시작·종료 시각, 종일 여부, 버전 식별값(etag), 수정 시각</td><td>읽기, 이용자 조작 시 쓰기</td><td>예, <code>cache.db</code>(암호화하지 않음)</td></tr>
+<tr><td>Google 캘린더</td><td>일정의 그 밖의 항목(참석자, 장소 등 응답에 포함된 항목)</td><td>읽기(응답 수신)</td><td>아니요, 메모리에서만 처리</td></tr>
+<tr><td>Microsoft To Do</td><td>할 일 목록 정보(목록 ID, 목록 이름 등)</td><td>읽기</td><td>목록 ID만 저장, <code>cache.db</code></td></tr>
+<tr><td>Microsoft To Do</td><td>할 일: 할 일 ID, 목록 ID, 제목, 메모(본문), 마감일, 완료 여부, 미리 알림 시각, 버전 식별값(etag), 수정 시각</td><td>읽기, 이용자 조작 시 쓰기</td><td>예, <code>cache.db</code>(암호화하지 않음)</td></tr>
+<tr><td>앱 동기화</td><td>변경분만 받기 위한 동기화 상태 값(동기화 토큰)</td><td>앱이 생성·사용</td><td>예, <code>cache.db</code></td></tr>
+<tr><td>앱 설정</td><td>창 위치, 크기, 투명도, 배치 방식, 선택한 테마, 복사(미러링) 켜짐 여부, 바탕화면 붙이기·복사를 켤 때 동의한 시각, 첫 실행 안내를 확인한 시각</td><td>앱이 생성·사용</td><td>예, <code>widget.json</code></td></tr>
+<tr><td>앱 실행 기록</td><td>실행 로그(9절 참조)</td><td>앱이 생성</td><td>예, <code>widget.log</code></td></tr>
+<tr><td>이용자 PC 화면</td><td>마우스 커서 위치, 마우스 버튼 눌림 여부, 바탕화면 아이콘 화면 좌표(10절 참조)</td><td>읽기</td><td>아니요</td></tr>
+</tbody></table></div>
+<p>Google 기본 캘린더의 캘린더 ID는 보통 Google 계정 이메일 주소와 같습니다. 따라서 PC의 캐시(<code>cache.db</code>)에 이용자의 Google 계정 이메일 주소가 들어갈 수 있습니다.</p>
+<h3>운영자가 직접 받는 정보</h3>
+<p>앱이 처리하는 일정, 할 일, 로그인 토큰은 이용자의 PC 안에서만 처리되는 온디바이스 방식으로 운영되며, 운영자의 서버로 전송되지 않습니다. 이 정보는 앱에서 로그아웃하거나 데이터 폴더를 삭제하면 PC에서 삭제됩니다(6절). 운영자가 직접 받아 처리하는 개인정보는 이용자가 문의할 때 보낸 이메일 주소와 문의 내용(이용자가 적은 이름 등 포함)뿐입니다. 이 밖에 운영자는 Microsoft가 Partner Center로 제공하는 설치, 사용, 추가 기능 구매, 충돌 통계를 받습니다(9절).</p>
+<h2>3. 처리 목적</h2>
+<p>앱은 위 정보를 다음 목적으로만 처리합니다.</p>
+<ul>
+<li>이용자의 Google 캘린더 일정과 Microsoft To Do 할 일을 위젯 화면에 표시합니다.</li>
+<li>이용자가 위젯에서 직접 요청한 일정·할 일의 생성, 수정, 완료 처리, 삭제를 수행합니다.</li>
+<li>이용자가 설정에서 켠 경우, 마감일이 있는 미완료 할 일을 이용자 본인의 Google 캘린더에 복사합니다(4절).</li>
+<li>로그인 상태를 유지해 매번 다시 로그인하지 않고 동기화합니다.</li>
+<li>창 위치 등 화면 설정을 다음 실행 때 복원합니다.</li>
+<li>실행 로그로 동기화 오류 등 문제의 원인을 이용자가 확인할 수 있게 합니다.</li>
+</ul>
+<p>앱은 60초마다 Google, Microsoft와 동기화합니다. 첫 동기화 때에는 기간 제한 없이 캘린더의 과거 일정 전체를 받고, 그 이후에는 변경된 부분만 받습니다.</p>
+<h3>요청하는 접근 권한(범위)별 사용 목적</h3>
+<div class="tw"><table>
+<thead><tr><th>권한(범위)</th><th>제공자</th><th>사용 목적</th></tr></thead>
+<tbody>
+<tr><td><code>https://www.googleapis.com/auth/calendar.readonly</code></td><td>Google</td><td>캘린더 목록과 목록에 있는 모든 캘린더의 일정을 읽어 위젯에 표시합니다.</td></tr>
+<tr><td><code>https://www.googleapis.com/auth/calendar.events</code></td><td>Google</td><td>이용자가 위젯에서 요청한 일정의 생성(기본 캘린더에 종일 일정), 제목·날짜 수정, 삭제를 수행합니다. 이용자가 4절의 복사(미러링)를 켠 경우 할 일 복사본 일정을 만들고 고치고 지웁니다.</td></tr>
+<tr><td><code>Tasks.ReadWrite</code></td><td>Microsoft</td><td>To Do 목록과 할 일을 읽어 표시하고, 이용자가 위젯에서 요청한 할 일의 생성, 수정, 완료 처리, 삭제를 수행합니다.</td></tr>
+<tr><td><code>offline_access</code></td><td>Microsoft</td><td>갱신 토큰을 받아, 이용자가 매번 다시 로그인하지 않아도 동기화가 이어지게 합니다. 로그인 라이브러리가 자동으로 함께 요청합니다.</td></tr>
+</tbody></table></div>
+<p>앱이 Google, Microsoft의 데이터를 바꾸는 것은 이용자가 켠 4절의 복사(미러링)를 제외하면 모두 이용자가 위젯에서 직접 조작한 경우입니다. 이용자가 위젯에서 요청한 일정·할 일 삭제는 위젯 안의 확인 대화상자에서 이용자가 확인한 뒤에만 실행합니다.</p>
+<h2>4. Microsoft To Do 할 일의 Google 캘린더 복사(미러링)</h2>
+<p>이용자가 설정에서 켠 경우에만, 앱은 Microsoft To Do의 할 일 일부를 이용자의 Google 계정에 있는 "To Do"라는 이름의 캘린더에 일정으로 자동 복사합니다. 새로 설치하면 이 기능은 꺼져 있으며, 이용자가 켤 때 동의한 시각을 설정 파일(<code>widget.json</code>)에 기록합니다. 이 복사는 Microsoft에서 Google 방향으로만 이루어지며, 이용자 본인의 Microsoft 계정 데이터 일부를 이용자 본인의 Google 계정으로 옮기는 것입니다. 복사된 정보는 운영자에게 전송되지 않습니다.</p>
+<ul>
+<li>복사할 캘린더: 앱은 캘린더를 새로 만들지 않습니다. 이용자가 Google 캘린더에서 이름이 "To Do"인 캘린더를 직접 만들어야 하며, 없으면 위젯이 만드는 방법을 안내합니다.</li>
+<li>복사 대상: 마감일이 있고 완료되지 않은 할 일</li>
+<li>복사되는 내용: 할 일 제목, 마감일(종일 일정) 또는 미리 알림 시각(30분 길이 일정), 내부 식별자(할 일 ID, 목록 ID — 일정의 비공개 확장 속성에 저장)</li>
+<li>복사되지 않는 내용: 할 일 메모(본문), 목록 이름</li>
+<li>시점: 동기화할 때마다, 그리고 이용자가 위젯에서 할 일을 고친 직후</li>
+<li>갱신과 삭제: 할 일이 완료되거나 삭제되거나 마감일이 없어지면 앱은 해당 복사본 일정을 지웁니다.</li>
+<li>변경 범위의 제한: 앱이 수정·삭제하는 Google 일정은 "To Do" 캘린더 안에서 할 일 ID 표시가 있는 복사본뿐이며, 다른 일정이나 캘린더 자체는 지우지 않습니다.</li>
+<li>한 방향 동작: Google 쪽 복사본을 고쳐도 To Do에는 반영되지 않으며, 다음 동기화 때 To Do의 내용으로 다시 덮입니다.</li>
+</ul>
+<p>Google에서 받은 데이터는 Microsoft나 다른 곳으로 보내지 않습니다. 복사는 설정에서 언제든 끌 수 있습니다. 끄면 이후의 복사는 멈추지만 이미 만들어진 복사본 일정은 지우지 않으므로, 필요하면 Google 캘린더에서 직접 지우실 수 있습니다.</p>
+<h2>5. 저장 위치와 안전성 확보 조치</h2>
+<p>앱의 데이터는 이용자 PC의 데이터 폴더에 저장되며, 위치는 설치 방식에 따라 다릅니다.</p>
+<ul>
+<li>Microsoft Store판: <code>%LOCALAPPDATA%\Packages\Gleipnir.calodu_c0vj0afnznazg\LocalState</code></li>
+<li>설치 프로그램판: <code>%LOCALAPPDATA%\agenda-widget</code></li>
+</ul>
+<p>시험 목적으로 환경 변수 <code>AGENDA_WIDGET_DATA</code>나 실행 인자 <code>--data-dir</code>로 다른 위치를 지정할 수 있습니다. 운영자는 이 폴더의 내용에 접근할 수 없습니다.</p>
+<div class="tw"><table>
+<thead><tr><th>파일</th><th>내용</th><th>보호 방식</th></tr></thead>
+<tbody>
+<tr><td><code>google_token.bin</code></td><td>Google 로그인 토큰</td><td>Windows DPAPI로 암호화, 현재 Windows 사용자 계정에서만 해독 가능</td></tr>
+<tr><td><code>msal_cache.bin</code></td><td>Microsoft 로그인 토큰, 계정 식별 정보가 포함될 수 있음</td><td>Windows DPAPI로 암호화, 현재 Windows 사용자 계정에서만 해독 가능</td></tr>
+<tr><td><code>cache.db</code></td><td>2절의 일정·할 일 항목, 동기화 상태 값</td><td>암호화하지 않음</td></tr>
+<tr><td><code>widget.json</code></td><td>창 위치, 크기, 투명도, 배치 방식, 테마</td><td>암호화하지 않음</td></tr>
+<tr><td><code>widget.log</code>(이전 파일 <code>widget.log.1</code>~<code>widget.log.3</code>)</td><td>실행 로그</td><td>암호화하지 않음</td></tr>
+</tbody></table></div>
+<p>앱이 적용하는 조치는 다음과 같습니다.</p>
+<ul>
+<li>로그인 토큰은 Windows DPAPI로 암호화해 저장합니다.</li>
+<li>Google, Microsoft와의 통신은 HTTPS로 이루어집니다.</li>
+<li>로그인 응답을 받기 위한 임시 서버(<code>localhost</code>)와 위젯 화면을 표시하는 로컬 서버(<code>127.0.0.1</code>)는 이용자 PC 안에서만 열립니다.</li>
+<li>운영자는 서버를 두지 않으므로 이용자의 데이터를 운영자 쪽에 보관하지 않습니다.</li>
+</ul>
+<p>일정·할 일 캐시(<code>cache.db</code>)는 암호화되지 않으므로, 같은 PC의 같은 Windows 계정에 접근할 수 있는 사람이나 프로그램은 그 내용을 읽을 수 있습니다. Windows 계정에 암호를 설정하고, 가능하면 BitLocker 등 디스크 암호화를 사용하실 것을 권장합니다.</p>
+<h2>6. 보유 기간과 파기</h2>
+<h3>보유 기간</h3>
+<p>PC에 저장된 정보는 이용자가 데이터 폴더를 삭제할 때까지 보관됩니다. 원래 서비스(Google, Microsoft)에서 삭제된 일정·할 일은 다음 동기화 때 캐시에서도 지워집니다. 다만 이용자가 캘린더나 할 일 목록 자체를 Google, Microsoft에서 없앤 경우, 그 안의 항목은 캐시에 남을 수 있습니다. 실행 로그는 파일 하나가 약 1MB가 되면 새 파일로 넘어가고 이전 파일은 3개까지만 보관하므로, 전체 크기는 약 4MB를 넘지 않으며 오래된 로그는 자동으로 지워집니다.</p>
+<h3>앱을 제거할 때</h3>
+<ul>
+<li>Microsoft Store판: 앱을 제거하면 Windows가 데이터 폴더(로그인 토큰, 캐시, 설정, 로그)를 함께 삭제합니다.</li>
+<li>설치 프로그램판: 앱을 제거해도 데이터 폴더는 지워지지 않으며, 제거가 끝나면 안내창이 폴더 위치를 알려 드립니다. 설치할 때 "Windows 시작 시 자동 실행"을 선택했다면(기본값은 선택 해제), 그 시작 등록 값은 제거할 때 지워집니다.</li>
+</ul>
+<p>어느 방식이든 앱이 Google "To Do" 캘린더에 만든 복사본 일정과 Google, Microsoft 계정에 등록된 앱 접근 권한은 앱을 제거해도 남습니다. 필요하면 Google 캘린더에서 복사본 일정을 직접 지우고, 아래 방법으로 접근 권한을 철회하십시오.</p>
+<h3>PC에 저장된 정보를 직접 삭제하는 방법</h3>
+<ol>
+<li>위젯을 종료합니다.</li>
+<li>파일 탐색기 주소창에 데이터 폴더 위치(5절)를 입력해 폴더를 엽니다. 설치 프로그램판은 <code>%LOCALAPPDATA%\agenda-widget</code>입니다.</li>
+<li>그 폴더를 삭제합니다. 휴지통으로 이동한 경우 휴지통도 비웁니다.</li>
+</ol>
+<h3>로그아웃과 계정 전환</h3>
+<p>앱 안에서 Google, Microsoft 각각 로그아웃하거나 다른 계정으로 전환할 수 있습니다. 로그아웃하면 확인을 거친 뒤 이 PC에 저장된 그 서비스의 로그인 정보(토큰)와 캐시 항목을 지웁니다. Google, Microsoft 서버에 있는 일정·할 일은 바뀌지 않습니다.</p>
+<h3>접근 권한 철회</h3>
+<p>앱의 로그아웃은 Google, Microsoft 계정에 등록된 앱 접근 권한을 폐기하지 않습니다. 같은 계정으로 다른 PC에서 쓰는 로그인까지 함께 끊기지 않게 하기 위해서입니다. 접근 권한을 완전히 철회하려면 각 계정 설정에서 해제하십시오.</p>
+<ul>
+<li>Google: Google 계정의 "서드파티 앱 및 서비스" 관리 화면(<a href="https://myaccount.google.com/permissions">https://myaccount.google.com/permissions</a>)에서 Calodu의 접근을 삭제합니다.</li>
+<li>Microsoft 개인 계정: 앱 권한 관리 화면(<a href="https://account.live.com/consent/Manage">https://account.live.com/consent/Manage</a>)에서 Calodu의 권한을 제거합니다.</li>
+<li>Microsoft 회사·학교 계정: 이 계정으로 로그인했다면 조직이 제공하는 앱 권한 관리 화면에서 Calodu의 권한을 제거하거나 조직 관리자에게 요청합니다.</li>
+</ul>
+<p>계정 설정에서 접근 권한을 철회해도 PC에 이미 저장된 정보는 지워지지 않습니다. 완전히 정리하려면 앱에서 로그아웃하거나 데이터 폴더를 삭제하고, 계정 설정에서 권한도 철회하십시오.</p>
+<h3>운영자의 파기 절차</h3>
+<p>운영자는 앱 데이터를 보관하지 않으므로, 운영자가 따로 파기할 앱 데이터는 없습니다. 이용자가 문의 과정(14절)에서 이메일로 보낸 정보는 문의 처리가 끝난 날부터 1년 동안 보관한 뒤 삭제합니다. 다만 Pro 구매, 환불 등 구매 관련 문의(거래에 관한 불만이나 분쟁 처리 기록)는 「전자상거래 등에서의 소비자보호에 관한 법률」 제6조와 같은 법 시행령 제6조에 따라 문의 처리가 끝난 날부터 3년 동안 보관한 뒤 삭제합니다(보존 항목: 이메일 주소, 문의 내용, 처리 결과). Partner Center 충돌 정보에 포함된 개인정보는 받은 날부터 30일 안에 삭제합니다(9절).</p>
+<h2>7. 제3자 제공·처리 위탁·국외 이전</h2>
+<ul>
+<li>제3자 제공: 운영자는 이용자의 개인정보를 제3자에게 제공하지 않습니다.</li>
+<li>앱의 통신: 앱은 이용자 PC에서 이용자 본인의 Google, Microsoft 계정으로 각 회사의 서버(Google API <code>www.googleapis.com</code>, Google 로그인·토큰 서버, Microsoft Graph <code>graph.microsoft.com</code>, Microsoft 로그인 서버 <code>login.microsoftonline.com</code>)와 직접 통신합니다. 이 서버들은 국외에 있을 수 있습니다. 운영자는 이 통신에 관여하지 않고 그 정보를 받지 않으므로, 이 통신은 운영자의 개인정보 제3자 제공, 처리 위탁, 국외 이전이 아닙니다. Google, Microsoft는 이용자가 직접 가입해 이용하는 서비스이며, 그 서비스에서의 정보 처리는 각 회사의 개인정보처리방침을 따릅니다. 4절의 복사(미러링)는 이용자 본인의 Microsoft 계정에서 이용자 본인의 Google 계정으로 정보를 옮기는 것입니다.</li>
+<li>처리 위탁과 국외 이전(문의 이메일): 운영자는 문의 이메일을 받고 보관하기 위해 Google LLC의 Gmail을 사용하며, 문의 이메일은 Google의 국외 서버에 보관될 수 있습니다. 그 밖에 운영자가 위탁하는 개인정보 처리 업무는 없습니다. 세부 사항은 아래 표와 같습니다.</li>
+</ul>
+<div class="tw"><table>
+<thead><tr><th>구분</th><th>내용</th></tr></thead>
+<tbody>
+<tr><td>법적 근거</td><td>「개인정보 보호법」 제28조의8 제1항 제3호 가목(처리방침 공개)</td></tr>
+<tr><td>이전 항목</td><td>문의자의 이메일 주소, 문의 내용(문의자가 적은 이름 등 포함)</td></tr>
+<tr><td>이전 국가</td><td>Google이 서버를 운영하는 국외 국가. Google은 전 세계에 서버를 두고 있으며 정보가 이용자가 사는 국가 밖의 서버에서 처리될 수 있다고 밝히고 있습니다(Google 개인정보처리방침). 보관 국가는 Google이 정하며 운영자가 지정할 수 없습니다.</td></tr>
+<tr><td>시기와 방법</td><td>문의자가 이메일을 보내는 때, 인터넷을 통한 전송</td></tr>
+<tr><td>이전받는 자</td><td>Google LLC(연락처: Google 개인정보처리방침의 문의 안내, <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>)</td></tr>
+<tr><td>이용 목적과 보유 기간</td><td>이메일 보관과 전송. 보유 기간은 6절의 문의 메일 보관 기간과 같습니다.</td></tr>
+<tr><td>거부 방법과 효과</td><td>국외 보관을 원하지 않으시면 이메일로 문의하지 않으시면 됩니다. 이 경우 운영자에게 문의할 수 없지만 앱 사용에는 영향이 없습니다.</td></tr>
+</tbody></table></div>
+<h3>화면 구성 요소(WebView2)의 임시 데이터</h3>
+<p>앱은 화면 구성 요소로 Microsoft Edge WebView2 런타임을 사용하며, 앱 화면은 WebView2의 InPrivate 모드로 실행됩니다. 실행 중에는 화면 표시용 임시 데이터를 Windows 사용자 임시 폴더(<code>%TEMP%</code>)에 만들고, 앱을 정상 종료하면 삭제합니다. 앱이 비정상 종료되면 이 임시 데이터가 남을 수 있으며, Windows의 임시 파일 정리로 삭제됩니다. 로그인은 시스템 기본 브라우저에서 이루어지므로 이 임시 데이터에 로그인 정보는 저장되지 않습니다. WebView2 런타임 자체의 데이터 처리는 Microsoft의 개인정보처리방침을 따릅니다.</p>
+<h2>8. Google 사용자 데이터 제한적 사용(Limited Use) 고지</h2>
+<p>Calodu가 Google API로부터 받은 정보를 사용하고 다른 앱으로 이전하는 것은 제한적 사용(Limited Use) 요건을 포함한 Google API 서비스 사용자 데이터 정책(<a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>)을 준수합니다.</p>
+<blockquote>Calodu's use and transfer to any other app of information received from Google APIs will adhere to the Google API Services User Data Policy, including the Limited Use requirements.</blockquote>
+<p>구체적으로 앱은 Google 사용자 데이터를 다음과 같이 다룹니다.</p>
+<ul>
+<li>위젯 화면에서 일정을 표시하고 이용자가 요청한 일정을 편집하는 기능을 제공하는 데에만 사용합니다.</li>
+<li>Google 사용자 데이터를 운영자나 제3자에게 전송하지 않습니다. 광고 플랫폼, 데이터 브로커 등 어떤 제3자에게도 판매하거나 넘기지 않습니다.</li>
+<li>광고(리타기팅, 맞춤형 광고 포함) 목적으로 사용하지 않습니다.</li>
+<li>신용도 판단이나 대출 목적으로 사용하지 않습니다.</li>
+<li>운영자는 서버가 없어 Google 사용자 데이터를 받지 않으므로, 운영자나 다른 사람이 그 데이터를 읽지 않습니다.</li>
+</ul>
+<h2>9. 자동 수집 장치(쿠키·분석 도구)와 로그 파일</h2>
+<ul>
+<li>쿠키와 브라우저 저장소: 앱 화면은 쿠키, localStorage, IndexedDB를 쓰지 않습니다. 위젯 화면은 이용자 PC 안의 로컬 서버(<code>127.0.0.1</code>)로 표시되며, 외부 스크립트, 글꼴, 이미지를 불러오지 않습니다. 화면 표시용 임시 데이터는 7절을 참고하십시오.</li>
+<li>분석·광고·오류 보고 도구: 앱에는 이러한 도구가 포함되어 있지 않습니다.</li>
+<li>Microsoft Store 배포: Microsoft는 Microsoft Store로 배포된 앱의 설치, 사용, 추가 기능 구매, 충돌·응답 없음 등에 관한 통계 보고서를 Partner Center에서 운영자에게 제공합니다. 이 통계는 개인을 식별할 수 없는 집계 정보이며, 운영자는 이를 특정 이용자나 기기를 식별하는 데 쓰지 않습니다. 충돌 정보에 개인정보가 포함되어 있는 경우 앱 오류 수정 목적으로만 쓰고 받은 날부터 30일 안에 삭제합니다. 이 정보의 수집과 처리는 Microsoft의 개인정보처리방침을 따릅니다.</li>
+</ul>
+<h3>로그 파일(<code>widget.log</code>)</h3>
+<p>앱은 문제 해결을 위해 이용자 PC의 데이터 폴더에 실행 로그를 남깁니다. 로그는 운영자에게 전송되지 않습니다.</p>
+<ul>
+<li>기록하는 것: 동기화된 항목 개수, 오류의 종류와 HTTP 상태 코드, 창 배치 방식, 실행 시작 시 데이터 폴더 경로, 로그아웃과 복사(미러링) 켜기·끄기를 한 사실, Pro 보유 여부와 구매 결과(성공·취소 등), 배치 모드에서 바탕화면 아이콘 개수와 위젯을 올리거나 내린 사실</li>
+<li>경로 표기: 로그의 폴더 경로는 Windows 사용자 이름이 드러나지 않도록 <code>%LOCALAPPDATA%</code>, <code>%APPDATA%</code>, <code>~</code> 같은 형태로 바꿔 기록합니다.</li>
+<li>기록하지 않는 것: 일정·할 일의 제목과 내용, 로그인 토큰(기본 설정 기준. 제목은 기본적으로 꺼져 있는 디버그 수준에서만 기록됩니다)</li>
+<li>크기: 로그 파일은 약 1MB마다 새 파일로 넘어가고 이전 파일은 3개까지만 보관합니다(최대 약 4MB). 필요하면 위젯을 종료한 뒤 로그 파일을 직접 삭제하실 수 있습니다.</li>
+</ul>
+<h2>10. 화면 표시를 위해 PC 안에서만 쓰는 정보</h2>
+<p>이 절의 바탕화면 붙이기 기능은 설치 프로그램판에서만 제공하며, Microsoft Store판에는 이 기능이 없습니다. 설치 프로그램판을 새로 설치하면 위젯은 일반 창으로 열리며, 위젯을 바탕화면에 붙이는 기능은 이용자가 설정에서 동의한 뒤에 켜집니다(동의한 시각은 <code>widget.json</code>에 기록). 이 중 위젯을 바탕화면 아이콘 뒤에 두는 배치 모드를 켜면, 앱은 위젯을 바탕화면 아이콘 앞뒤로 올리고 내리기 위해 다음 정보를 약 0.05초마다 읽습니다.</p>
+<ul>
+<li>마우스 커서 위치</li>
+<li>마우스 버튼이 눌렸는지 여부</li>
+<li>바탕화면 아이콘의 화면 위치(좌표)</li>
+</ul>
+<p>앱은 아이콘 이름, 파일 내용, 키보드 입력을 읽지 않습니다. 위 정보는 저장하거나 전송하지 않으며, 로그에는 아이콘 개수와 위젯을 올리거나 내린 사실만 기록합니다.</p>
+<h2>11. 유료 기능과 결제</h2>
+<p>앱은 무료이며, Microsoft Store의 추가 기능(add-on) "Pro"를 1회 구매하면 Microsoft To Do 기능과 할 일의 Google 캘린더 복사(4절)를 쓸 수 있습니다. 구매는 앱의 설정 화면에서 시작하며 Microsoft Store의 구매 창에서 진행됩니다. 결제와 카드번호 등 결제 수단 정보는 Microsoft가 처리하며, 앱과 운영자는 이를 받지 않습니다. 구매와 결제에 관한 정보 처리는 Microsoft의 개인정보처리방침과 Microsoft Store 이용 약관을 따릅니다. 앱은 Windows의 Microsoft Store 라이선스 확인 기능으로 Pro 보유 여부만 확인하며, 별도의 라이선스 파일을 만들지 않습니다. 로그에는 Pro 보유 여부와 구매 결과만 기록합니다(9절). Pro의 가격은 Microsoft Store의 앱 페이지와 앱 설정 화면에 Microsoft Store가 알려 주는 금액으로 표시됩니다.</p>
+<h2>12. 아동의 개인정보</h2>
+<p>앱은 만 14세 미만 아동을 대상으로 하지 않습니다. 앱을 쓰려면 Google, Microsoft 계정이 필요합니다. 대한민국에서 본인이 직접 계정을 관리할 수 있는 나이는 Google, Microsoft 모두 만 14세 이상이며, 그보다 어린 경우 보호자가 계정을 관리해야 합니다(Google Family Link, Microsoft 가족 보호 기능). 다른 국가에서는 각 회사가 국가별로 정한 연령 기준을 따릅니다. 운영자는 앱으로 아동의 개인정보를 수집하지 않습니다. 만 14세 미만 아동이 문의하려는 경우 법정대리인이 대신 문의해 주시기 바랍니다.</p>
+<h2>13. 이용자의 권리와 행사 방법</h2>
+<p>이용자(정보주체)는 개인정보의 열람, 정정, 삭제, 처리정지, 동의 철회를 요구할 권리가 있습니다. 앱의 정보는 이용자 PC에 있으므로 대부분의 권리는 이용자가 직접 행사할 수 있습니다.</p>
+<div class="tw"><table>
+<thead><tr><th>권리</th><th>행사 방법</th></tr></thead>
+<tbody>
+<tr><td>열람</td><td>데이터 폴더(5절)의 파일을 확인합니다. 원본 일정·할 일은 Google 캘린더, Microsoft To Do에서 확인합니다.</td></tr>
+<tr><td>정정</td><td>위젯이나 Google 캘린더, Microsoft To Do에서 직접 수정합니다. 캐시는 다음 동기화 때 반영됩니다.</td></tr>
+<tr><td>삭제</td><td>앱에서 서비스별로 로그아웃하면 그 서비스의 로그인 정보와 캐시가 지워집니다. 모든 정보를 지우려면 6절의 방법으로 데이터 폴더를 삭제합니다.</td></tr>
+<tr><td>처리정지</td><td>위젯을 종료하면 동기화와 처리가 멈춥니다. 복사(미러링)만 멈추려면 설정에서 끕니다. 자동 실행을 설정했다면 Windows 시작 프로그램 설정에서 끄거나 앱을 제거합니다.</td></tr>
+<tr><td>동의 철회</td><td>앱에서 로그아웃하고, 6절의 방법으로 Google, Microsoft 계정에서 앱의 접근 권한을 철회합니다. 복사(미러링)와 바탕화면 붙이기는 설정에서 끌 수 있습니다.</td></tr>
+</tbody></table></div>
+<p>운영자는 이용자의 PC나 계정 데이터에 접근할 수 없으므로 이를 대신 열람하거나 삭제해 드릴 수는 없습니다. 권리 행사 방법에 관한 문의는 14절의 연락처로 보내 주시면 지체 없이 답변합니다. 법정대리인이나 위임을 받은 사람을 통해서도 문의하실 수 있습니다. Google, Microsoft 계정에 저장된 정보에 대한 권리는 각 회사가 제공하는 절차로 행사합니다.</p>
+<h2>14. 개인정보 보호책임자와 문의처</h2>
+<div class="tw"><table>
+<thead><tr><th>구분</th><th>내용</th></tr></thead>
+<tbody>
+<tr><td>개인정보 보호책임자</td><td>개인정보 보호 담당(운영자 Gleipnir)</td></tr>
+<tr><td>연락처</td><td>gleipnir909@gmail.com</td></tr>
+<tr><td>운영자</td><td>Gleipnir</td></tr>
+<tr><td>사업자등록</td><td>없음(개인 운영)</td></tr>
+</tbody></table></div>
+<p>운영자는 1인 개인 운영자로서 개인정보 처리에 관한 업무를 직접 총괄하고, 개인정보 관련 문의, 불만 처리, 피해 구제 요청을 위 이메일로 받습니다.</p>
+<h2>15. 권익침해 구제 방법</h2>
+<p>개인정보 침해에 대한 피해 구제, 상담 등은 아래 기관에 문의하실 수 있습니다.</p>
+<div class="tw"><table>
+<thead><tr><th>기관</th><th>전화</th><th>웹사이트</th></tr></thead>
+<tbody>
+<tr><td>개인정보분쟁조정위원회</td><td>1833-6972</td><td><a href="https://www.kopico.go.kr">www.kopico.go.kr</a></td></tr>
+<tr><td>개인정보침해신고센터(한국인터넷진흥원)</td><td>118</td><td><a href="https://privacy.kisa.or.kr">privacy.kisa.or.kr</a></td></tr>
+<tr><td>대검찰청</td><td>1301</td><td><a href="https://www.spo.go.kr">www.spo.go.kr</a></td></tr>
+<tr><td>경찰청</td><td>182</td><td><a href="https://ecrm.police.go.kr">ecrm.police.go.kr</a></td></tr>
+</tbody></table></div>
+<h2>16. 방침의 변경</h2>
+<p>이 방침을 변경하는 경우 이 페이지와 Microsoft Store에 제출한 방침 본문을 고쳐 게시하고, 바뀐 방침의 시행일을 본문에 적습니다. 변경 사실은 Microsoft Store의 앱 업데이트 설명에도 알립니다. 일반 변경은 시행 7일 전부터, 이용자 권리에 중요한 변경은 시행 30일 전부터 알립니다.</p>
+<ul>
+<li>시행일: 2026년 10월 8일</li>
+<li>이전 방침: 2026-10-06 시행본(이 페이지의 이전 판)</li>
+</ul>
+</section>
 <footer>Contact: <a href="mailto:gleipnir909@gmail.com">gleipnir909@gmail.com</a></footer>
 </main></body></html>
